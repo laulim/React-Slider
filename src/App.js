@@ -2,83 +2,55 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import Grid from 'react-bootstrap/lib/Button';
-import Row from 'react-bootstrap/lib/Row';
-import Col from 'react-bootstrap/lib/Col';
-import styled from 'styled-components'
+import Grid from 'react-bootstrap/lib/Grid';
+import styled from 'styled-components';
 
+import Header from './components/Header';
+import Menu from './components/Menu';
+import Main from './components/Main';
 
+const url = process.env.PUBLIC_URL + '/img/bg.jpg'
+
+const HeaderWrapper = styled.header`
+  width: 100%;
+  height: 49px;
+  background-color: #242424;
+  opacity: 0.8;
+`
+const MenuWrapper = styled.div`
+  height: 89px;
+  padding-top: 20px;
+`
+const MainWrapper = styled.main`
+  height: 600px;
+  padding-top: 130px;
+  background: #242424 url(${url}) center no-repeat;
+  background-size: cover;
+`
 
 class App extends Component {
   render() {
     return (
-      <div className="wrapper">
-        <SayFullName name="Mila" surname="Kovtun" link="vk.com/" />
-        <SayFullName name="Foo" surname="Barr" link="#" />
-        <SayFullName name="Foo" surname="Barr" link="#" />
-        <Comment 
-          date={comment.date}
-          text={comment.text}
-          author={comment.author}
-        />
+      <div className="App">
+        <HeaderWrapper>
+          <Grid>
+            <Header />
+          </Grid>
+        </HeaderWrapper>
+        <MenuWrapper>
+          <Grid>
+            <Menu />
+          </Grid>
+        </MenuWrapper>
+        <MainWrapper>
+          <Grid>
+            <Main />
+          </Grid>
+        </MainWrapper>
       </div>
     );
   }
 }
-
-function SayFullName(props) {
-  return (
-    <div>
-      <h1> My name is {props.name}, my surname - {props.surname}</h1>
-      <a href={props.link}>Link to my profile</a>
-    </div>
-    )
-}
-
-function Comment(props) {
-  return (
-    <div className="comment">
-      <UserInfo user={props.author} />
-      <div className="comment-text">
-        {props.text}
-      </div>
-      <div className="comment-date">
-        {props.date}
-      </div>
-    </div>
-    )
-}
-
-function Avatar(props) {
-  return (
-    <img className="avatar"
-      src={props.user.avatarUrl}
-      alt={props.user.name}
-    />
-    )
-}
-
-function UserInfo(props) {
-  return (
-     <div className="userInfo">
-        <Avatar user={props.user} />
-        <div className="userInfo-name">
-          {props.user.name}
-        </div>
-      </div>
-    )
-}
-
-const comment = {
-  date: new Date().toLocaleDateString(),
-  text: 'I hope you enjoy learning React!',
-  author: {
-    name: 'Hello Kitty',
-    avatarUrl: 'http://placekitten.com/g/64/64'
-  }
-};
-
-
 
 
 export default App;
